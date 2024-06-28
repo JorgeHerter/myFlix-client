@@ -1,5 +1,7 @@
+import React from 'react';
 import { createRoot } from 'react-dom/client';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import MainView from './MainView.jsx';
 // Import statement to indicate that you need to bundle `./index.scss`
 import "./index.scss";
 
@@ -7,7 +9,7 @@ import "./index.scss";
 const MyFlixApplication = () => {
   return (
     <div className="my-flix">
-      <div>Good morning</div>
+      <MainView />
     </div>
   );
 };
