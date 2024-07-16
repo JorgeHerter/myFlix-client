@@ -2951,10 +2951,15 @@ var prevRefreshSig = window.$RefreshSig$;
 $parcel$ReactRefreshHelpers$98a3.prelude(module);
 
 try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
 var _client = require("react-dom/client");
 // Import statement to indicate that you need to bundle `./index.scss`
 var _indexScss = require("./index.scss");
+var _mainViewJsx = require("./MainView.jsx");
+var _mainViewJsxDefault = parcelHelpers.interopDefault(_mainViewJsx);
 // Main component (will eventually use all the others)
 const MyFlixApplication = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -2963,12 +2968,12 @@ const MyFlixApplication = ()=>{
             children: "Good morning"
         }, void 0, false, {
             fileName: "src/index.jsx",
-            lineNumber: 10,
+            lineNumber: 11,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/index.jsx",
-        lineNumber: 9,
+        lineNumber: 10,
         columnNumber: 5
     }, undefined);
 };
@@ -2979,7 +2984,7 @@ const root = (0, _client.createRoot)(container);
 // Tells React to render your app in the root DOM element
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(MyFlixApplication, {}, void 0, false, {
     fileName: "src/index.jsx",
-    lineNumber: 20,
+    lineNumber: 21,
     columnNumber: 13
 }, undefined));
 var _c;
@@ -2990,7 +2995,7 @@ $RefreshReg$(_c, "MyFlixApplication");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9FbZO"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9FbZO","react":"21dqq","./MainView.jsx":"emEHR","@parcel/transformer-js/src/esmodule-helpers.js":"6CS9s"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("ee51401569654d91");
 
@@ -27371,6 +27376,185 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"5d9c5f27982f8f05":"5eJE2"}]},["lnRX0","5fyhi","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"5d9c5f27982f8f05":"5eJE2"}],"emEHR":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$011a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$011a.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactDom = require("react-dom");
+var _reactDomDefault = parcelHelpers.interopDefault(_reactDom);
+var _s = $RefreshSig$();
+const MovieCard = ({ movie, selectMovie })=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        onClick: ()=>selectMovie(movie),
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+            children: movie.title
+        }, void 0, false, {
+            fileName: "src/MainView.jsx",
+            lineNumber: 6,
+            columnNumber: 9
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/MainView.jsx",
+        lineNumber: 5,
+        columnNumber: 5
+    }, undefined);
+_c = MovieCard;
+const MovieView = ({ movie, goBack })=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                children: movie.title
+            }, void 0, false, {
+                fileName: "src/MainView.jsx",
+                lineNumber: 12,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: movie.description
+            }, void 0, false, {
+                fileName: "src/MainView.jsx",
+                lineNumber: 13,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                src: movie.poster,
+                alt: movie.title
+            }, void 0, false, {
+                fileName: "src/MainView.jsx",
+                lineNumber: 14,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: movie.genre
+            }, void 0, false, {
+                fileName: "src/MainView.jsx",
+                lineNumber: 15,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: movie.director
+            }, void 0, false, {
+                fileName: "src/MainView.jsx",
+                lineNumber: 16,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: goBack,
+                children: "Back"
+            }, void 0, false, {
+                fileName: "src/MainView.jsx",
+                lineNumber: 17,
+                columnNumber: 9
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/MainView.jsx",
+        lineNumber: 11,
+        columnNumber: 5
+    }, undefined);
+_c1 = MovieView;
+const MainView = ()=>{
+    _s();
+    const [movies, setMovies] = (0, _react.useState)([
+        {
+            title: "Inception",
+            description: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+            genre: "Science Fiction",
+            director: "Christopher Nolan",
+            poster: "https://upload.wikimedia.org/wikipedia/en/7/7f/Inception_ver3.jpg"
+        },
+        {
+            title: "The Shawshank Redemption",
+            description: "Two imprisoned",
+            genre: "Drama",
+            director: "Frank Darabont",
+            poster: "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg"
+        },
+        {
+            title: "The Godfather",
+            description: "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+            genre: "Crime",
+            director: "Francis Ford Coppola",
+            poster: "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg"
+        }
+    ]);
+    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    const selectMovie = (movie)=>setSelectedMovie(movie);
+    const goBack = ()=>setSelectedMovie(null);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(MovieView, {
+            movie: selectedMovie,
+            goBack: goBack
+        }, void 0, false, {
+            fileName: "src/MainView.jsx",
+            lineNumber: 53,
+            columnNumber: 19
+        }, undefined) : movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(MovieCard, {
+                movie: movie,
+                selectMovie: selectMovie
+            }, movie.title, false, {
+                fileName: "src/MainView.jsx",
+                lineNumber: 55,
+                columnNumber: 21
+            }, undefined))
+    }, void 0, false, {
+        fileName: "src/MainView.jsx",
+        lineNumber: 51,
+        columnNumber: 9
+    }, undefined);
+};
+_s(MainView, "0t5BNYyPlHJM7M2zTulUTm5R7X8=");
+_c2 = MainView;
+(0, _reactDomDefault.default).render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(MainView, {}, void 0, false, {
+    fileName: "src/MainView.jsx",
+    lineNumber: 63,
+    columnNumber: 17
+}, undefined), document.getElementById("root"));
+var _c, _c1, _c2;
+$RefreshReg$(_c, "MovieCard");
+$RefreshReg$(_c1, "MovieView");
+$RefreshReg$(_c2, "MainView");
+
+  $parcel$ReactRefreshHelpers$011a.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-dom":"j6uA9","@parcel/transformer-js/src/esmodule-helpers.js":"6CS9s","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9FbZO"}],"6CS9s":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}]},["lnRX0","5fyhi","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

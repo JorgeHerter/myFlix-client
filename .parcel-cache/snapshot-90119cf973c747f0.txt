@@ -1,4 +1,4 @@
-2540
+2541
 77C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\ordered-binary\assets133637467615052756 1
 70C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\plugin133637467609849580 1
 75C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\micromatch\index.js133637467608039546 0
@@ -287,7 +287,7 @@
 87C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\caniuse-lite\data\regions\SN.js133637467731120229 0
 91C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\utils\src\getCertificate.js133637467616829917 0
 98C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\node-resolver-core\lib\builtins.js133637467609749847 0
-56C:\Users\Jorge\myFlix-client\myFlix-client\src\index.jsx133637465512138482 0
+56C:\Users\Jorge\myFlix-client\myFlix-client\src\index.jsx133639933357079976 0
 93C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\transformer-sass\package.json133637467615343827 0
 73C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\source-map-js\lib133637467615042715 1
 117C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\caniuse-lite\data\features\mdn-css-backdrop-pseudo-element.js133637467714186939 0
@@ -789,7 +789,7 @@
 87C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\sass\types\legacy\function.d.ts133637467623498360 0
 77C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\braces\lib\compile.js133637467608219212 0
 82C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\rust\index.js.flow133637467608252902 0
-65C:\Users\Jorge\myFlix-client\myFlix-client\dist\index.b4b6dfad.js133637467823312118 0
+65C:\Users\Jorge\myFlix-client\myFlix-client\dist\index.b4b6dfad.js133639930462550680 0
 126C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\core\test\fixtures\config-extends-not-found\.parcelrc-multiple133637467615652917 0
 72C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\lmdb\SECURITY.md133637467666775860 0
 131C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\source-map\parcel_sourcemap_node\artifacts\index.linux-x64-gnu.node133637467621378090 0
@@ -1212,7 +1212,7 @@
 79C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\node-releases\README.md133637467611851201 0
 107C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mdb_drop.1133637467616943088 0
 87C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\caniuse-lite\data\regions\AX.js133637467619736224 0
-46C:\Users\Jorge\myFlix-client\myFlix-client\src133637464467562411 1
+46C:\Users\Jorge\myFlix-client\myFlix-client\src133639238530824783 1
 84C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\workers\lib\child.js133637467612193701 0
 74C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\json5\lib\parse.js133637467612356007 0
 96C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\react-dom\umd\react-dom.profiling.min.js133637459905940544 0
@@ -1568,7 +1568,7 @@
 79C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\core\lib\public133637467652572302 1
 86C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\node-addon-api\tools\README.md133637467616829917 0
 91C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\caniuse-lite\data\regions\alt-sa.js133637467616933080 0
-58C:\Users\Jorge\myFlix-client\myFlix-client\dist\index.html133637467843504742 0
+58C:\Users\Jorge\myFlix-client\myFlix-client\dist\index.html133639930459357987 0
 102C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\core\test\fixtures\parcel\package.json133637467693406725 0
 88C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\core\lib\public\Asset.js133637467616933080 0
 82C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\graph\package.json133637467616943088 0
@@ -1971,7 +1971,7 @@
 107C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\caniuse-lite\data\features\constraint-validation.js133637467626062242 0
 94C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\core\test\ParcelConfig.test.js133637467626082297 0
 104C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\core\lib\requests\ParcelConfigRequest.js133637467626188891 0
-66C:\Users\Jorge\myFlix-client\myFlix-client\dist\index.2212206d.css133637467842315818 0
+66C:\Users\Jorge\myFlix-client\myFlix-client\dist\index.2212206d.css133639930459795298 0
 111C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\lmdb\dependencies\lmdb-data-v1\libraries\liblmdb\lmdb.h133637467626297692 0
 93C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\caniuse-lite\data\features\wasm-gc.js133637467738055716 0
 107C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\caniuse-lite\data\features\contentsecuritypolicy.js133637467626188891 0
@@ -1999,7 +1999,7 @@
 106C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\core\test\PublicMutableBundleGraph.test.js133637467628059187 0
 108C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\caniuse-lite\data\features\css-background-offsets.js133637467628195283 0
 96C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\core\test\RequestTracker.test.js133637467629270891 0
-69C:\Users\Jorge\myFlix-client\myFlix-client\dist\index.b4b6dfad.js.map133637467823483192 0
+69C:\Users\Jorge\myFlix-client\myFlix-client\dist\index.b4b6dfad.js.map133639930462651061 0
 108C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\caniuse-lite\data\features\passive-event-listener.js133637467719629198 0
 96C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\lmdb\dependencies\v8\v8-fast-api-calls.h133637467628483984 0
 90C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\@parcel\core\lib\ReporterRunner.js133637467628379219 0
@@ -2488,8 +2488,7 @@
 72C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\process\index.js133637467811138598 0
 71C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\process\test.js133637467811202156 0
 73C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\process\.eslintrc133637467811222153 0
-47C:\Users\Jorge\myFlix-client\myFlix-client\dist133637467843520863 1
-70C:\Users\Jorge\myFlix-client\myFlix-client\dist\index.2212206d.css.map133637467842383150 0
+47C:\Users\Jorge\myFlix-client\myFlix-client\dist133639930462683577 1
 60C:\Users\Jorge\myFlix-client\myFlix-client\package-lock.json133637467811797938 0
 55C:\Users\Jorge\myFlix-client\myFlix-client\package.json133637467811352248 0
 52C:\Users\Jorge\myFlix-client\myFlix-client\README.md133637430472555261 0
@@ -2539,3 +2538,5 @@
 78C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\js-tokens\CHANGELOG.md133637459898274596 0
 73C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\js-tokens\LICENSE133637459898354616 0
 73C:\Users\Jorge\myFlix-client\myFlix-client\node_modules\.bin\loose-envify133637459906300803 0
+59C:\Users\Jorge\myFlix-client\myFlix-client\src\MainView.jsx133639917940124342 0
+70C:\Users\Jorge\myFlix-client\myFlix-client\dist\index.2212206d.css.map133639930459845353 0
