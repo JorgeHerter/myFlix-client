@@ -53,28 +53,34 @@ export const MainView = () => {
     );
   }
 
-  return (
-    <Row>
-      {!user ? (
-        <>
-          <LoginView onLoggedIn={(user) => setUser(user)} />
-          or
-          <SignupView />
-        </>
-      ) : selectedMovie ? (
-        <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-      ) : movies.length === 0 ? (
-        <div className="main-view">The list is empty!</div>
-      ) : (
-        movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            movie={movie}
-            onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)}
-          />
-        ))
-      )}
-      <button onClick={() => setUser(null)}>Logout</button>
-    </Row>
-  );
+
 };
+
+return (
+  <Row>
+    {!user ? (
+      <>
+        <LoginView onLoggedIn={(user) => setUser(user)} />
+        or
+        <SignupView />
+      </>
+    ) : selectedMovie ? (
+      <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+    ) : movies.length === 0 ? (
+      <div className="main-view">The list is empty!</div>
+    ) : (
+      <>
+        {movies.map((movie) => (
+          <Col className="mb-5" key={movie.id} md={3}>
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)}
+            />
+          </Col>
+        ))}
+      </>
+    )}
+    <button onClick={() => setUser(null)}>Logout</button>
+  </Row>
+);

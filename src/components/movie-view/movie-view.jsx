@@ -1,3 +1,4 @@
+import React from "react";
 import "movie-view.scss";
 
 
@@ -34,3 +35,17 @@ export const MovieView = ({ movie, onBackClick }) => {
         </div>
     );
 };
+
+<col md={8}>
+    <MovieView
+    style={{ border: " 1px solid green " }}
+    movie={selectedMovie}
+    onBackClick={() => setSelectedMovie(null)}
+    />
+</col>
+
+return (
+    <row className="justify-content-md-center">
+
+    </row>
+);
