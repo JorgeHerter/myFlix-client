@@ -15,9 +15,6 @@ export const LoginView = ({ onLoggedIn, onLoggedOut }) => {
 
         const data = { username, password };
 
-        console.log("Username:", username);
-        console.log("Password:", password);
-
         fetch("https://movie-api1-fbc239963864.herokuapp.com/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -30,7 +27,6 @@ export const LoginView = ({ onLoggedIn, onLoggedOut }) => {
             return response.json();
         })
         .then((data) => {
-            console.log("API Response:", data);
             setLoading(false);
             if (data.user) {
                 localStorage.setItem("user", JSON.stringify(data.user));

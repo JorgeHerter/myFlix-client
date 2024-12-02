@@ -1,103 +1,121 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Row, Button, Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { FaThumbsDown } from 'react-icons/fa';
 
-const Favorites = ({ user, movies, onFavoriteChange }) => {
+const Favorites = ({ user, movies, token, onUserUpdate, onFavoriteChange }) => {
   const [message, setMessage] = useState('');
-  const favoriteMovies = user?.FavoriteMovies || [];  // Ensure it's an empty array if not defined
+  const [isRemoving, setIsRemoving] = useState(false);
+  const [favoritesList, setFavoritesList] = useState(user.favoriteMovies || []);
+  const navigate = useNavigate();
 
-  // If the user has no favorite movies, display a message
-  if (favoriteMovies.length === 0) {
-    return (
-      <Col>
-        <Alert variant="info">You have no favorite movies yet. Add some!</Alert>
-      </Col>
-    );
-  }
+  useEffect(() => {
+    // Ensure the initial favorites list is loaded from user object (or localStorage if needed)
+    const savedUser = JSON.parse(localStorage.getItem('user'));
+    if (savedUser && savedUser.favoriteMovies) {
+      setFavoritesList(savedUser.favoriteMovies);
+    }
+  }, []);
 
-  // Handle toggling favorite (removing a movie from favorites)
-  const handleFavoriteToggle = async (movieId) => {
-    console.log('Removing movie with ID:', movieId);
+  // Function to remove a movie from favorites
+  const removeFromFavorites = async (movieId) => {
+    if (!token) {
+      setMessage('You need to log in to remove favorites.');
+      return;
+    }
 
-    // Step 1: Optimistically update the UI (remove the movie from favorites)
-    onFavoriteChange(movieId, 'remove');  // Optimistically remove the movie from the UI
+    setMessage('');
+    setIsRemoving(true);
 
     try {
-      console.log('Attempting to remove favorite movie. User:', user.username, 'Token:', user.token);
-      
-      // Step 2: Make the DELETE request to remove the movie from the backend
+      // Send DELETE request to the server to remove the movie from the user's favorites
       const response = await fetch(
         `https://movie-api1-fbc239963864.herokuapp.com/users/${user.username}/movies/${movieId}`,
         {
           method: 'DELETE',
           headers: {
+            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${user.token}`,  // Send JWT token to authenticate the user
           },
         }
       );
 
-      // Log the response from the API
-      console.log('API Response:', response.status, response.statusText);
-
       if (!response.ok) {
-        // Handle errors like Unauthorized (401) or not found (404)
-        if (response.status === 401) {
-          console.error('Error: Unauthorized request. Token might be invalid.');
-          setMessage('Unauthorized: Please log in again.');
-        } else {
-          console.error('Error: Failed to remove movie. Status:', response.status);
-          setMessage('Error removing favorite movie.');
-        }
-
-        // If API call failed, revert optimistic update
-        onFavoriteChange(movieId, 'add');
-        return;
+        throw new Error('Failed to remove movie from favorites');
       }
 
-      // Step 3: Get the updated list of favorite movies from the response
-      const updatedFavorites = await response.json();
-      console.log('Updated favorites from server:', updatedFavorites);
+      // Remove the movie from the favorites list locally
+      const updatedFavorites = favoritesList.filter(id => id !== movieId);
+      setFavoritesList(updatedFavorites);
 
-      // Step 4: Update the UI with the updated list of favorites
-      onFavoriteChange(updatedFavorites);  // Pass the updated favorites list to the parent component
+      // Sync updated favorites with localStorage and parent component
+      const updatedUser = { ...user, favoriteMovies: updatedFavorites };
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+      onUserUpdate(updatedUser); // Inform parent component of the update
 
+      setMessage('Movie removed from favorites!');
+      onFavoriteChange(movieId); // Notify parent of the favorite change
     } catch (error) {
-      // Step 5: Handle any errors that occurred during the fetch request
-      console.error('Error removing favorite movie:', error);
-      setMessage('Error removing favorite movie.');
-      // Optionally revert the UI change if the API call fails
-      onFavoriteChange(movieId, 'add');  // Revert the optimistic UI change on failure
+      console.error('Error removing from favorites:', error);
+      setMessage(`Error: ${error.message}`);
+    } finally {
+      setIsRemoving(false);
     }
   };
+
+  // If no favorites, show a message
+  if (!favoritesList || favoritesList.length === 0) {
+    return (
+      <Col>
+        <Alert variant="info">You have no favorite movies yet. Add some!</Alert>
+        <Button variant="primary" onClick={() => navigate('/')}>Back to Home</Button>
+      </Col>
+    );
+  }
 
   return (
     <Col>
       <h2>Your Favorite Movies</h2>
-
-      
-      {message && <Alert variant="danger">{message}</Alert>}
+      {message && <Alert variant={message.includes('Error') ? 'danger' : 'success'}>{message}</Alert>}
 
       <Row>
         {movies
-          .filter((movie) => favoriteMovies.includes(movie._id))  // Only show movies that are in favorites
-          .map((movie) => (
+          .filter(movie => favoritesList.includes(movie._id))
+          .map(movie => (
             <Col key={movie._id} sm={12} md={6} lg={4} className="mb-4">
-              <div className="card">
-                
+              <div className="card h-100">
                 <img
-                  src={movie.imagePath || 'https://via.placeholder.com/200'}  // Fallback if imagePath is missing
+                  src={movie.imagePath || 'https://via.placeholder.com/300x450'}
                   alt={movie.title}
                   className="card-img-top"
+                  style={{ height: '300px', objectFit: 'cover' }}
                 />
-                <div className="card-body">
+                <div className="card-body d-flex flex-column">
                   <h5 className="card-title">{movie.title}</h5>
-                  <p className="card-text">{movie.description}</p>
-                  <Button
-                    variant="danger"
-                    onClick={() => handleFavoriteToggle(movie._id)}  // Trigger remove from favorites
-                  >
-                    <span role="img" aria-label="thumbs-down">👎</span> Remove from Favorites
-                  </Button>
+                  
+                  <div className="mt-auto">
+                    <Button 
+                      variant="primary" 
+                      onClick={() => navigate(`/movies/${movie._id}`)}
+                      className="me-2 mb-2"
+                    >
+                      View Details
+                    </Button>
+                    <Button
+                      variant="danger"
+                      onClick={() => removeFromFavorites(movie._id)}
+                      disabled={isRemoving}
+                      className="mb-2"
+                    >
+                      {isRemoving ? 'Removing...' : (
+                        <>
+                          <FaThumbsDown className="me-2" />
+                          Remove from Favorites
+                        </>
+                      )}
+                    </Button>
+                  </div>
                 </div>
               </div>
             </Col>
@@ -107,7 +125,35 @@ const Favorites = ({ user, movies, onFavoriteChange }) => {
   );
 };
 
+Favorites.propTypes = {
+  user: PropTypes.object.isRequired,
+  movies: PropTypes.array.isRequired,
+  token: PropTypes.string.isRequired,
+  onUserUpdate: PropTypes.func.isRequired,
+  onFavoriteChange: PropTypes.func.isRequired,
+};
+
 export default Favorites;
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
 
 
 
