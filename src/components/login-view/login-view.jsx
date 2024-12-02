@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import icons for password visibility toggle
 
 export const LoginView = ({ onLoggedIn, onLoggedOut }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -18,11 +20,11 @@ export const LoginView = ({ onLoggedIn, onLoggedOut }) => {
         fetch("https://movie-api1-fbc239963864.herokuapp.com/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
         })
         .then((response) => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error("Network response was not ok");
             }
             return response.json();
         })
@@ -52,6 +54,11 @@ export const LoginView = ({ onLoggedIn, onLoggedOut }) => {
 
     const isLoggedIn = !!localStorage.getItem("user"); // Check if user is logged in
 
+    // Toggle password visibility
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
+
     return (
         <div>
             {isLoggedIn ? (
@@ -75,17 +82,24 @@ export const LoginView = ({ onLoggedIn, onLoggedOut }) => {
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="formPassword">
+                    <Form.Group controlId="formPassword" className="position-relative">
                         <Form.Label>Password:</Form.Label>
                         <Form.Control
-                            type="password"
+                            type={passwordVisible ? "text" : "password"} // Toggle input type based on password visibility
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
                             minLength="5"
                             disabled={loading}
                         />
+                        <div
+                            className="password-toggle-icon"
+                            onClick={togglePasswordVisibility} // Toggle visibility on icon click
+                        >
+                            {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+                        </div>
                     </Form.Group>
+
                     {error && <p className="text-danger">{error}</p>}
                     <Button variant="primary" type="submit" disabled={loading}>
                         {loading ? "Logging In..." : "Log In"}
