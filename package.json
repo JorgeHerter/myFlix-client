@@ -33,5 +33,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "https://movie-api1-fbc239963864.herokuapp.com/"
 }

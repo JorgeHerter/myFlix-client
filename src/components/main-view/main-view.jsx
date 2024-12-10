@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import { Row, Col, Spinner, Alert } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import MovieCard from '../movie-card/movie-card';
 import MovieView from '../movie-view/movie-view';
 import LoginView from '../login-view/login-view';
+import ProfileView from '../profile-view/profile-view';
+import MovieCarousel from '../movie-carousel/movie-carousel';
 import SignupView from '../signup-view/signup-view';
 import NavigationBar from '../navigation-bar/navigation-bar';
 import Favorites from '../favorites/favorites';
-import ProfileView from '../profile-view/profile-view';
 import { useParams } from 'react-router-dom';
+import MovieSearch from '../movie-search/movie-search'; // <-- Import MovieSearch here
 
 // MovieDetails Component to handle individual movie pages
 const MovieDetails = ({ movies, user, token, onUserUpdate, handleFavoriteChange }) => {
@@ -33,9 +35,9 @@ const MovieDetails = ({ movies, user, token, onUserUpdate, handleFavoriteChange 
 };
 
 export const MainView = () => {
-  const storedUser = JSON.parse(localStorage.getItem('user'));
+  /*const storedUser = JSON.parse(localStorage.getItem('user'));*/
   const storedToken = localStorage.getItem('token');
-  
+  const storedUser = JSON.parse(localStorage.getItem('user')) || {};
   const [user, setUser] = useState(storedUser);
   const [token, setToken] = useState(storedToken);
   const [movies, setMovies] = useState([]);
@@ -155,7 +157,6 @@ export const MainView = () => {
     setUser(updatedUser);
   };
   
-  
   if (loading) {
     return (
       <Col className="text-center">
@@ -189,7 +190,12 @@ export const MainView = () => {
           
           <Route
             path="/login"
-            element={user ? <Navigate to="/" /> : <Col md={5}><LoginView onLoggedIn={handleLogin} /></Col>}
+            element={user ? <Navigate to="/" /> : (
+              <Col md={5}>
+                <LoginView onLoggedIn={handleLogin} />
+                <MovieCarousel />
+              </Col>
+            )}
           />
 
           <Route
@@ -241,6 +247,11 @@ export const MainView = () => {
             )}
           />
 
+<Route
+  path="/movie-search"  // Change the path from /search to /movie-search
+  element={<MovieSearch />} 
+/>
+
           <Route
             path="/"
             element={user ? (
@@ -274,3 +285,5 @@ export const MainView = () => {
 };
 
 export default MainView;
+
+

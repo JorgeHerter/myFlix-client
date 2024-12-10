@@ -24,6 +24,7 @@ function NavigationBar({ user, onLogout }) { // Ensure prop name matches
                             <>
                                 <Nav.Link as={Link} to={`/users/${user.username}`}>Profile</Nav.Link>
                                 <Nav.Link as={Link} to="/favorites">Favorites</Nav.Link>
+                                <Nav.Link as={Link} to="/movie-search">Search</Nav.Link>
                             </>
                         )}
                     </Nav>
