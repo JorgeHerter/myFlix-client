@@ -35,7 +35,7 @@ const MovieCarousel = () => {
 };
 
 export default MovieCarousel;*/
-/*import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS for carousel
 import { Carousel, Alert, Spinner } from 'react-bootstrap'; // React Bootstrap components
 
@@ -120,12 +120,12 @@ const MovieCarousel = () => {
   );
 };
 
-export default MovieCarousel;*/
-import React, { useEffect, useState } from 'react';
+export default MovieCarousel;
+/*import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS for carousel
 import { Carousel, Alert, Spinner } from 'react-bootstrap'; // React Bootstrap components
 
-const MovieCarousel = ({ onLogout }) => {
+const MovieCarousel = () => {
   const [movies, setMovies] = useState([]); // To store fetched movies
   const [error, setError] = useState(null);  // To track error messages
   const [loading, setLoading] = useState(true); // To track loading state
@@ -161,7 +161,7 @@ const MovieCarousel = ({ onLogout }) => {
     };
 
     fetchMovies(); // Call the fetchMovies function
-  }, [onLogout]); // Include onLogout in the dependency array
+  }); // Include onLogout in the dependency array
 
   return (
     <div className="movie-carousel">
@@ -207,7 +207,7 @@ const MovieCarousel = ({ onLogout }) => {
   );
 };
 
-export default MovieCarousel;
+export default MovieCarousel;*/
 
 
 
