@@ -296,9 +296,9 @@ import SignupView from '../signup-view/signup-view';
 import NavigationBar from '../navigation-bar/navigation-bar';
 import Favorites from '../favorites/favorites';
 import { useParams } from 'react-router-dom';
-import MovieSearch from '../movie-search/movie-search'; // <-- Import MovieSearch here
+import MovieSearch from '../movie-search/movie-search';
 
-// MovieDetails Component to handle individual movie pages
+// MovieDetails Component
 const MovieDetails = ({ movies, user, token, onUserUpdate, handleFavoriteChange }) => {
   const { movieId } = useParams();
   const movie = movies.find((m) => m._id === movieId);
@@ -314,56 +314,59 @@ const MovieDetails = ({ movies, user, token, onUserUpdate, handleFavoriteChange 
         user={user}
         token={token}
         onUserUpdate={onUserUpdate}
-        onFavoriteChange={handleFavoriteChange}  // Pass handleFavoriteChange to MovieView
+        onFavoriteChange={handleFavoriteChange}
       />
     </Col>
   );
 };
 
 export const MainView = () => {
-  const storedToken = localStorage.getItem('token');
-  const storedUser = JSON.parse(localStorage.getItem('user')) || {};
-  const [user, setUser] = useState(storedUser);
-  const [token, setToken] = useState(storedToken);
+  const [user, setUser] = useState(null); // Start with null for user and token
+  const [token, setToken] = useState(null);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Fetch movies data when token is available
+  // Check for user and token in localStorage
   useEffect(() => {
-    if (!token) {
-      setLoading(false);
-      return;
+    const storedUser = JSON.parse(localStorage.getItem('user')) || null;
+    const storedToken = localStorage.getItem('token') || null;
+
+    if (storedUser && storedToken) {
+      setUser(storedUser);
+      setToken(storedToken);
     }
+
+    setLoading(false); // Stop loading once user data is set (or not)
+  }, []);
+
+  useEffect(() => {
+    if (!token) return; // If no token, skip the movie fetch
 
     const fetchMovies = async () => {
       try {
-        const response = await fetch(
-          'https://movie-api1-fbc239963864.herokuapp.com/movies',
-          {
-            headers: { Authorization: `Bearer ${token}` }
-          }
-        );
+        const response = await fetch('https://movie-api1-fbc239963864.herokuapp.com/movies', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
         if (!response.ok) {
           throw new Error('Failed to fetch movies');
         }
 
         const data = await response.json();
-        
-        const formattedMovies = data.map(movie => ({
+        const formattedMovies = data.map((movie) => ({
           ...movie,
           releaseYear: String(movie.releaseYear || 'Unknown'),
           director: typeof movie.director === 'object' ? movie.director : {
             name: movie.director || 'Unknown Director',
-            birthYear: 'Unknown'
+            birthYear: 'Unknown',
           },
           genre: typeof movie.genre === 'object' ? movie.genre : {
             name: movie.genre || 'Unknown Genre',
-            description: 'No description available'
-          }
+            description: 'No description available',
+          },
         }));
 
         setMovies(formattedMovies);
@@ -379,10 +382,9 @@ export const MainView = () => {
     fetchMovies();
   }, [token]);
 
-  // Filter movies based on search query
   useEffect(() => {
     if (searchQuery) {
-      const filtered = movies.filter(movie =>
+      const filtered = movies.filter((movie) =>
         movie.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredMovies(filtered);
@@ -404,44 +406,24 @@ export const MainView = () => {
     localStorage.clear();
   };
 
-  // useEffect to initialize and sync the UI dynamically when the user changes
-  useEffect(() => {
-    // Sync with localStorage whenever the user or token changes
-    if (user) {
-      localStorage.setItem('user', JSON.stringify(user));
-    }
-    if (token) {
-      localStorage.setItem('token', token);
-    }
-  }, [user, token]);
-
-  // Function to update the user and sync the UI
   const handleUserUpdate = (updatedUser) => {
     setUser(updatedUser);
     localStorage.setItem('user', JSON.stringify(updatedUser));
   };
-  
+
   const handleFavoriteChange = (movieId) => {
     if (!user) return;
-  
-    // Determine if the movie is already in favorites
+
     const isFavorite = user.favoriteMovies.includes(movieId);
-  
-    // Update the favorites list accordingly
     const updatedFavorites = isFavorite
-      ? user.favoriteMovies.filter(id => id !== movieId)  // Remove movie if it's already in favorites
-      : [...user.favoriteMovies, movieId];  // Add movie if it's not in favorites
-  
-    // Update the user state with the new list of favorite movies
+      ? user.favoriteMovies.filter((id) => id !== movieId)
+      : [...user.favoriteMovies, movieId];
+
     const updatedUser = { ...user, favoriteMovies: updatedFavorites };
-  
-    // Update user in localStorage to persist the changes
     localStorage.setItem('user', JSON.stringify(updatedUser));
-  
-    // Update the user state in React
     setUser(updatedUser);
   };
-  
+
   if (loading) {
     return (
       <Col className="text-center">
@@ -450,40 +432,33 @@ export const MainView = () => {
         </Spinner>
       </Col>
     );
-  }
-
-  return (
+  }return (
     <BrowserRouter>
-      <NavigationBar 
-        user={user} 
-        onSearch={setSearchQuery}
-        onLogout={handleLogout}
-      />
-      
+      <NavigationBar user={user} onSearch={setSearchQuery} onLogout={handleLogout} />
+  
       <Row className="justify-content-md-center">
-        {error && (
-          <Col>
-            <Alert variant="danger">{error}</Alert>
-          </Col>
-        )}
-
+        {error && <Col><Alert variant="danger">{error}</Alert></Col>}
+  
         <Routes>
-          {/* Add this route as the first one to redirect non-authenticated users to login */}
-          <Route
-            path="/login"
-            element={user ? <Navigate to="/" /> : (
-              <Col md={5}>
-                <LoginView onLoggedIn={handleLogin} />
-                <MovieCarousel />
-              </Col>
-            )}
-          />
-
           <Route
             path="/signup"
             element={user ? <Navigate to="/" /> : <Col md={5}><SignupView /></Col>}
           />
-          
+  
+          <Route
+            path="/login"
+            element={
+              user ? (
+                <Navigate to="/" />
+              ) : (
+                <Col md={5}>
+                  <LoginView onLoggedIn={handleLogin} />
+                  <MovieCarousel className="w-50" /> {/* MovieCarousel added here */}
+                </Col>
+              )
+            }
+          />
+  
           <Route
             path="/movies/:movieId"
             element={user ? (
@@ -498,7 +473,7 @@ export const MainView = () => {
               <Navigate to="/login" replace />
             )}
           />
-
+  
           <Route
             path="/favorites"
             element={user && token ? (
@@ -515,7 +490,7 @@ export const MainView = () => {
               <Navigate to="/login" replace />
             )}
           />
-
+  
           <Route
             path="/users/:username"
             element={user ? (
@@ -531,12 +506,9 @@ export const MainView = () => {
               <Navigate to="/login" replace />
             )}
           />
-
-          <Route
-            path="/movie-search"  // Change the path from /search to /movie-search
-            element={<MovieSearch />} 
-          />
-
+  
+          <Route path="/movie-search" element={<MovieSearch />} />
+  
           <Route
             path="/"
             element={user ? (
@@ -552,7 +524,7 @@ export const MainView = () => {
                           user={user}
                           token={token}
                           onUserUpdate={handleUserUpdate}
-                          onFavoriteChange={handleFavoriteChange}  // Pass handleFavoriteChange
+                          onFavoriteChange={handleFavoriteChange}
                         />
                       </Col>
                     ))}
@@ -566,9 +538,7 @@ export const MainView = () => {
         </Routes>
       </Row>
     </BrowserRouter>
-  );
+  );  
 };
 
 export default MainView;
-
-

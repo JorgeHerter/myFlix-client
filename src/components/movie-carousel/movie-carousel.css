@@ -1,0 +1,22 @@
+/* Custom styling for the carousel controls */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%; /* Adjust the width of the controls */
+  opacity: 1; /* Ensure they are fully visible */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: black; /* Change arrow color to make them visible */
+  border-radius: 50%; /* Optional: adds round shape to the arrows */
+}
+
+.carousel-inner {
+  position: relative; /* Ensure the carousel content is positioned correctly */
+}
+
+.carousel-item img {
+  width: 100%; /* Make the images take the full width of the carousel */
+  max-height: 400px; /* Set a max height to prevent images from growing too large */
+  object-fit: cover; /* Makes sure the image maintains its aspect ratio while covering the container */
+}

@@ -38,6 +38,7 @@ export default MovieCarousel;*/
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS for carousel
 import { Carousel, Alert, Spinner } from 'react-bootstrap'; // React Bootstrap components
+import './movie-carousel.css';
 
 const MovieCarousel = () => {
   const [movies, setMovies] = useState([]); // To store fetched movies
@@ -96,7 +97,7 @@ const MovieCarousel = () => {
             movies.map((movie, index) => (
               <Carousel.Item key={movie.title}>
                 <img
-                  className="d-block w-100"
+                  className="d-block mx-auto w-50"
                   src={movie.imagePath || 'https://via.placeholder.com/150'}
                   //alt={movie.title}
                 />
@@ -105,7 +106,7 @@ const MovieCarousel = () => {
           ) : (
             <Carousel.Item>
               <img
-                className="d-block w-100"
+                className="d-block mx-auto w-50"
                 src="https://via.placeholder.com/150"
                 alt="Placeholder"
               />
